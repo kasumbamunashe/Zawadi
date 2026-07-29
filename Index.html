@@ -151,18 +151,21 @@
     }
 
     .book-btn {
-      background: var(--gold-deep);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
       color: #fff;
       padding: 10px 22px;
-      border-radius: 2px;
+      border-radius: 30px;
       font-size: 13px;
       letter-spacing: 0.06em;
       white-space: nowrap;
-      transition: background .25s ease;
+      transition: background .3s ease, box-shadow .3s ease, transform .2s ease;
+      box-shadow: 0 4px 14px rgba(168, 129, 60, 0.25);
     }
 
     .book-btn:hover {
-      background: var(--espresso);
+      background: linear-gradient(135deg, var(--gold-deep), var(--espresso));
+      box-shadow: 0 6px 20px rgba(168, 129, 60, 0.4);
+      transform: translateY(-1px);
     }
 
     .navlinks,
@@ -273,32 +276,38 @@
     }
 
     .btn-primary {
-      background: var(--gold-deep);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
       color: #fff;
       padding: 14px 32px;
       font-size: 14px;
       letter-spacing: 0.06em;
-      border-radius: 2px;
-      transition: background .25s ease;
+      border-radius: 30px;
+      transition: box-shadow .3s ease, transform .2s ease;
+      box-shadow: 0 6px 20px rgba(168,129,60,0.25);
     }
 
     .btn-primary:hover {
-      background: var(--espresso);
+      box-shadow: 0 10px 30px rgba(168,129,60,0.4);
+      transform: translateY(-2px);
     }
 
     .btn-secondary {
-      border: 1px solid var(--gold);
+      border: 1.5px solid var(--gold-deep);
       color: var(--gold-deep);
       padding: 14px 32px;
       font-size: 14px;
       letter-spacing: 0.06em;
-      border-radius: 2px;
+      border-radius: 30px;
       transition: all .25s ease;
+      background: transparent;
     }
 
     .btn-secondary:hover {
-      background: var(--gold);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+      border-color: transparent;
       color: #fff;
+      box-shadow: 0 6px 20px rgba(168,129,60,0.25);
+      transform: translateY(-2px);
     }
 
     .hero-media {
