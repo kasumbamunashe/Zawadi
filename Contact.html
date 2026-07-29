@@ -16,9 +16,11 @@
             --espresso: #2B1F1A;
             --gold: #A8813C;
             --gold-deep: #8A6B2E;
+            --gold-light: #D4A84B;
             --rose: #C97B85;
+            --rose-deep: #A85A67;
             --blush: #F4E3E1;
-            --line: rgba(168, 129, 60, 0.35);
+            --line: rgba(168, 129, 60, 0.25);
         }
 
         * {
@@ -146,9 +148,10 @@
 
         .page-hero {
             text-align: center;
-            padding: 80px 32px 50px;
+            padding: 90px 32px 60px;
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #FBF5EC 0%, #F9EDE0 40%, #F4E3E1 100%);
         }
 
         .page-hero::before {
@@ -160,8 +163,14 @@
             width: 800px;
             height: 800px;
             border-radius: 50%;
-            background: radial-gradient(circle, var(--blush) 0%, transparent 68%);
+            background: radial-gradient(circle, rgba(212,168,75,0.1) 0%, rgba(244,227,225,0.45) 45%, transparent 70%);
             z-index: 0;
+            animation: heroGlow 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroGlow {
+            from { transform: translateX(-50%) scale(1); }
+            to   { transform: translateX(-50%) scale(1.1); }
         }
 
         .page-hero-inner {
@@ -178,7 +187,11 @@
         }
 
         .page-hero h1 {
-            font-size: clamp(38px, 6vw, 58px);
+            font-size: clamp(38px, 6vw, 62px);
+            background: linear-gradient(135deg, var(--espresso) 30%, var(--gold-deep) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .page-hero p {
@@ -213,6 +226,13 @@
 
         .info-block {
             margin-bottom: 38px;
+            padding-left: 20px;
+            border-left: 2px solid transparent;
+            transition: border-color .3s ease;
+        }
+
+        .info-block:hover {
+            border-left-color: var(--gold-light);
         }
 
         .info-block .label {
@@ -220,15 +240,17 @@
             letter-spacing: 0.18em;
             color: var(--gold-deep);
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .info-block .value {
-            font-size: 18px;
+            font-size: 19px;
+            color: var(--espresso);
+            font-family: 'Cormorant Garamond', serif;
         }
 
         .info-block .value a {
-            display: block;
+            display: inline-block;
             margin-bottom: 4px;
             transition: color .2s ease;
         }
@@ -238,66 +260,82 @@
         }
 
         .info-block .value small {
-            display: block;
-            font-size: 12px;
+            display: inline-block;
+            font-size: 13px;
             color: #8a7c6e;
-            margin-top: 2px;
+            font-family: 'Jost', sans-serif;
+            margin-left: 8px;
         }
 
         .quick-actions {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
-            margin-top: 8px;
+            margin-top: 24px;
+            padding-left: 20px;
         }
 
         .btn-primary {
-            background: var(--gold-deep);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
             color: #fff;
             padding: 14px 28px;
             font-size: 14px;
             letter-spacing: 0.06em;
-            border-radius: 2px;
-            transition: background .25s ease;
+            border-radius: 30px;
+            transition: box-shadow .3s ease, transform .2s ease;
             display: inline-block;
+            box-shadow: 0 6px 20px rgba(168,129,60,0.25);
         }
 
         .btn-primary:hover {
-            background: var(--espresso);
+            box-shadow: 0 10px 30px rgba(168,129,60,0.4);
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
-            border: 1px solid var(--gold);
+            border: 1.5px solid var(--gold-deep);
             color: var(--gold-deep);
             padding: 14px 28px;
             font-size: 14px;
             letter-spacing: 0.06em;
-            border-radius: 2px;
+            border-radius: 30px;
             transition: all .25s ease;
             display: inline-block;
+            background: transparent;
         }
 
         .btn-secondary:hover {
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+            border-color: transparent;
             color: #fff;
+            box-shadow: 0 6px 20px rgba(168,129,60,0.25);
+            transform: translateY(-2px);
         }
 
         .map-card {
-            border: 1px solid var(--line);
+            border: 1px solid rgba(168,129,60,0.2);
             overflow: hidden;
             background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(43,31,26,0.1);
+            transition: transform .4s ease, box-shadow .4s ease;
+        }
+
+        .map-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(43,31,26,0.15);
         }
 
         .map-card iframe {
             width: 100%;
-            height: 340px;
+            height: 380px;
             border: 0;
             display: block;
-            filter: grayscale(15%) sepia(8%);
+            filter: grayscale(20%) sepia(10%);
         }
 
         .map-caption {
-            padding: 20px 22px;
+            padding: 24px;
             font-size: 13px;
             color: #6b5c50;
             border-top: 1px solid var(--line);
@@ -307,24 +345,41 @@
             max-width: 760px;
             margin: 0 auto;
             padding: 0 32px 100px;
-            text-align: center;
         }
 
         .note-strip .box {
-            border: 1px solid var(--line);
-            padding: 26px 30px;
+            border: 1px solid rgba(201,123,133,0.25);
+            border-left: 4px solid var(--rose);
+            padding: 24px 30px;
             font-size: 14px;
             color: #4a3d35;
-            background: var(--blush);
+            background: linear-gradient(135deg, rgba(244,227,225,0.7) 0%, rgba(251,245,236,0.9) 100%);
+            border-radius: 0 8px 8px 0;
+            text-align: center;
         }
 
         footer {
             border-top: 1px solid var(--line);
-            padding: 30px 32px;
+            padding: 48px 32px;
             text-align: center;
             font-size: 12px;
             color: #8a7c6e;
-            letter-spacing: 0.03em;
+            letter-spacing: 0.05em;
+            background: linear-gradient(180deg, var(--cream) 0%, #f5ebe0 100%);
+        }
+
+        .footer-logo {
+            font-family: 'Parisienne', cursive;
+            font-size: 26px;
+            color: var(--gold-deep);
+            margin-bottom: 10px;
+        }
+
+        .footer-divider {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 12px auto;
         }
 
         .float-book {
@@ -360,11 +415,24 @@
             outline-offset: 3px;
         }
 
+        /* ---------- Scroll reveal ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
         @media (prefers-reduced-motion: reduce) {
             * {
                 transition: none !important;
                 scroll-behavior: auto !important;
             }
+            .reveal { opacity: 1; transform: none; }
         }
     </style>
 </head>
@@ -445,7 +513,11 @@
             Different</div>
     </div>
 
-    <footer>© Zawadi Lumière Beauty Spa — Where Radiance Begins</footer>
+    <footer>
+        <div class="footer-logo">Zawadi</div>
+        <div class="footer-divider"></div>
+        &copy; 2025 Zawadi Lumi&egrave;re Beauty Spa &mdash; Where Radiance Begins
+    </footer>
 
     <a class="float-book" href="tel:0788854938" aria-label="Call to book an appointment">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -465,6 +537,16 @@
                     a.href = base + '?cart=' + cart;
                 });
             }
+
+            // Scroll reveal
+            const revealEls = document.querySelectorAll('.info-card, .map-card, .note-strip');
+            revealEls.forEach(el => el.classList.add('reveal'));
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+                });
+            }, { threshold: 0.08 });
+            revealEls.forEach(el => observer.observe(el));
         });
     </script>
 
